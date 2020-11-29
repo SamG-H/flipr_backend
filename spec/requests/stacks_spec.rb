@@ -45,7 +45,7 @@ RSpec.describe 'Stacks API', type: :request do
       end
 
       it 'returns a not found message' do
-        expect(response.body).to match(/Couldn't find stack/)
+        expect(response.body).to match(/Couldn't find Stack/)
       end
     end
   end
@@ -53,7 +53,7 @@ RSpec.describe 'Stacks API', type: :request do
   # Test suite for POST /stacks
   describe 'POST /stacks' do
     # valid payload
-    let(:valid_attributes) { { title: 'Learn Elm', created_by: '1' } }
+    let(:valid_attributes) { { title: 'Learn Elm'} }
 
     context 'when the request is valid' do
       before { post '/stacks', params: valid_attributes }
@@ -68,7 +68,7 @@ RSpec.describe 'Stacks API', type: :request do
     end
 
     context 'when the request is invalid' do
-      before { post '/stacks', params: { title: 'Foobar' } }
+      before { post '/stacks', params: {} }
 
       it 'returns status code 422' do
         expect(response).to have_http_status(422)
@@ -76,7 +76,7 @@ RSpec.describe 'Stacks API', type: :request do
 
       it 'returns a validation failure message' do
         expect(response.body)
-          .to match(/Validation failed: Created by can't be blank/)
+          .to match(/Validation failed: Title can't be blank/)
       end
     end
   end
