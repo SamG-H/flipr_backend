@@ -17,8 +17,8 @@ class CardsController < ApplicationController
 
   # POST /stacks/:stack_id/cards
   def create
-    @stack.cards.create!(card_params)
-    json_response(StackSerializer.new(@stack), :created)
+    @card = @stack.cards.create!(card_params)
+    json_response(CardSerializer.new(@card), :created)
   end
 
   # PUT /stacks/:stack_id/cards/:id
