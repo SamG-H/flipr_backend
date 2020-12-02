@@ -4,18 +4,21 @@ class CardsController < ApplicationController
 
   # GET /stacks/:stack_id/cards
   def index
-    json_response(@stack.cards)
+    options = {
+      include: [:stack]
+    }
+    json_response(CardSerializer.new(@stack.cards, options))
   end
 
   # GET /stacks/:stack_id/cards/:id
   def show
-    json_response(@card)
+    json_response(CardSerializer.new(@card))
   end
 
   # POST /stacks/:stack_id/cards
   def create
     @stack.cards.create!(card_params)
-    json_response(@stack, :created)
+    json_response(StackSerializer.new(@stack), :created)
   end
 
   # PUT /stacks/:stack_id/cards/:id

@@ -3,16 +3,16 @@ class StacksController < ApplicationController
   
   def index
     @stacks = Stack.all
-    json_response(@stacks)
+    json_response(StackSerializer.new(@stacks))
   end
 
   def show
-    json_response(@stack)
+    json_response(StackSerializer.new(@stack))
   end
 
   def create
     @stack = Stack.create!(stack_params)
-    json_response(@stack, :created)
+    json_response(StackSerializer.new(@stack), :created)
   end
 
   def update

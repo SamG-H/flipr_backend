@@ -17,7 +17,7 @@ RSpec.describe 'cards API' do
       end
 
       it 'returns all stack cards' do
-        expect(json.size).to eq(20)
+        expect(json['data'].size).to eq(20)
       end
     end
 
@@ -44,7 +44,7 @@ RSpec.describe 'cards API' do
       end
 
       it 'returns the card' do
-        expect(json['id']).to eq(id)
+        expect(json['data']['id']).to eq("#{id}")
       end
     end
 
