@@ -36,7 +36,7 @@ class CardsController < ApplicationController
   private
 
   def card_params
-    params.permit(:front, :back)
+    params.require(:card).permit(:front, :back)
   end
 
   def set_stack

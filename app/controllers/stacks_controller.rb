@@ -27,7 +27,7 @@ class StacksController < ApplicationController
 
   private
   def stack_params
-    params.permit(:title)
+    params.require(:stack).permit(:title)
   end
 
   def set_stack
