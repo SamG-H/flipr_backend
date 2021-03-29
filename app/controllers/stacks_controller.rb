@@ -3,7 +3,10 @@ class StacksController < ApplicationController
   
   def index
     @stacks = Stack.all
-    json_response(StackSerializer.new(@stacks))
+    options = {
+      include: [:user]
+    }
+    json_response(StackSerializer.new(@stacks, options))
   end
 
   def show
