@@ -14,8 +14,13 @@ class StacksController < ApplicationController
   end
 
   def create
-    @stack = Stack.create!(stack_params)
-    json_response(StackSerializer.new(@stack), :created)
+    @stack = Stack.new(stack_params)
+    @stack.user = User.first
+    if @stack.save
+      json_response(StackSerializer.new(@stack), :created)
+    else
+      json_respone("Error")
+    end
   end
 
   def update
